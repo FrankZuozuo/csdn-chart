@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>报表</title>
+
+
+    <script src="https://cdn.bootcss.com/echarts/4.3.0-rc.2/echarts-en.common.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+
+        function setChart(id, option) {
+            var myChart = echarts.init(document.getElementById(id));
+            option.backgroundColor = "#2c343c";
+            option.textStyle = {
+                color: 'rgba(255, 255, 255, 0.3)'
+            };
+            myChart.setOption(option);
+        }
+
+        function url(position) {
+            return '/api/data/t/' + [[${size}]] + '?' + 'dataTableEnum=' + position;
+        }
+    </script>
+
+    <style>
+
+        .box {
+            width: 49%;
+            min-width: 400px;
+            height: 350px;
+            padding-bottom: 100px;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+        }
+
+        .title {
+            font-size: 14px;
+            font-weight: 300;
+            color: blueviolet;
+            padding-bottom: 10px;
+        }
+    </style>
+
+</head>
+<body>
+
+
+<div class="box left">
+    <div class="title">访问数据增长图</div>
+    <div id="visitNumber" style="height:400px;"></div>
+    <script>
+        $.get(url('VISIT_NUMBER'), function (res) {
+            option = {
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: res.t.datetime
+                },
+                yAxis: {
+                    min: res.t.min - 2,
+                    max: res.t.max + 2
+                },
+                series: [{
+                    data: res.t.data,
+                    type: 'line'
+                }]
+            };
+            setChart('visitNumber', option);
+        });
+    </script>
+</div>
+
+<div class="box right">
+    <div class="title">积分增长曲线图</div>
+    <div id="integral" style="height:400px;"></div>
+    <script>
+
+        $.get(url('INTEGRAL'), function (res) {
+            option = {
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: res.t.datetime
+                },
+                yAxis: {
+                    min: res.t.min - 2,
+                    max: res.t.max + 2
+                },
+                series: [{
+                    data: res.t.data,
+                    type: 'line'
+                }]
+            };
+            setChart('integral', option);
+        });
+    </script>
+</div>
+
+<div class="box left">
+    <div class="title">排名增长图</div>
+    <div id="top" style="height:400px;"></div>
+    <script>
+        $.get(url('TOP'), function (res) {
+            option = {
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: res.t.datetime
+                },
+                yAxis: {
+                    min: res.t.min - 2,
+                    max: res.t.max + 2
+                },
+                series: [{
+                    data: res.t.data,
+                    type: 'line'
+                }]
+            };
+            setChart('top', option);
+        });
+    </script>
+</div>
+
+<div class="box right">
+    <div class="title">等级增长曲线图</div>
+    <div id="level" style="height:400px;"></div>
+    <script>
+        $.get(url('LEVEL'), function (res) {
+            option = {
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: res.t.datetime
+                },
+                yAxis: {
+                    min: res.t.min - 2,
+                    max: res.t.max + 2
+                },
+                series: [{
+                    data: res.t.data,
+                    type: 'line'
+                }]
+            };
+            setChart('level', option);
+        });
+    </script>
+</div>
+
+
+<div class="box left">
+    <div class="title">原创文章增长图</div>
+    <div id="articleNumber" style="height:400px;"></div>
+    <script>
+        $.get(url('ARTICLE_NUMBER'), function (res) {
+            option = {
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: res.t.datetime
+                },
+                yAxis: {
+                    min: res.t.min - 2,
+                    max: res.t.max + 2
+                },
+                series: [{
+                    data: res.t.data,
+                    type: 'line'
+                }]
+            };
+            setChart('articleNumber', option);
+        });
+    </script>
+</div>
+
+<div class="box right">
+    <div class="title">粉丝增长曲线图</div>
+    <div id="fans" style="height:400px;"></div>
+    <script>
+        $.get(url('FANS'), function (res) {
+            option = {
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: res.t.datetime
+                },
+                yAxis: {
+                    min: res.t.min - 2,
+                    max: res.t.max + 2
+                },
+                series: [{
+                    data: res.t.data,
+                    type: 'line'
+                }]
+            };
+            setChart('fans', option);
+        });
+    </script>
+</div>
+
+
+<div class="box left">
+    <div class="title">喜欢增长图</div>
+    <div id="likeNumber" style="height:400px;"></div>
+    <script>
+        $.get(url('LIKE_NUMBER'), function (res) {
+            option = {
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: res.t.datetime
+                },
+                yAxis: {
+                    min: res.t.min - 2,
+                    max: res.t.max + 2
+                },
+                series: [{
+                    data: res.t.data,
+                    type: 'line'
+                }]
+            };
+            setChart('likeNumber', option);
+        });
+    </script>
+</div>
+
+<div class="box right">
+    <div class="title">评论增长曲线图</div>
+    <div id="commentNumber" style="height:400px;"></div>
+    <script>
+        $.get(url('COMMENT_NUMBER'), function (res) {
+            option = {
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: res.t.datetime
+                },
+                yAxis: {
+                    min: res.t.min - 2,
+                    max: res.t.max + 2
+                },
+                series: [{
+                    data: res.t.data,
+                    type: 'line'
+                }]
+            };
+            setChart('commentNumber', option);
+        });
+    </script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+
+
+
+
+spring:
+  application:
+    name: csdn-chart
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/csdn?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+  thymeleaf:
+    cache: false
+  execute:
+    core-pool-size: 10
+    max-pool-size: 200
+    queue-capacity: 10
+server:
+  port: 9253
+
+csdn:
+  csdn-url: https://wretchant.blog.csdn.net
