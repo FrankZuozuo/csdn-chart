@@ -1,4 +1,4 @@
-package com.wretchant.csdnchart.ctrl.business;
+package com.wretchant.csdnchart.ctrl.business.web;
 
 import com.wretchant.csdnchart.annotation.InfoLog;
 import org.springframework.stereotype.Controller;

@@ -1,7 +1,8 @@
-package com.wretchant.csdnchart.ctrl.business;
+package com.wretchant.csdnchart.ctrl.business.api;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.wretchant.csdnchart.annotation.InfoLog;
 import com.wretchant.csdnchart.core.R;
 import com.wretchant.csdnchart.entity.DataTable;
 import com.wretchant.csdnchart.entity.DataTableEnum;
@@ -37,6 +38,7 @@ public class DataCtrl {
     this.dataTableService = dataTableService;
   }
 
+  @InfoLog("前端获取统计数据")
   @GetMapping("/t/{size}")
   public R t(DataTableEnum dataTableEnum, @PathVariable(name = "size") Integer size) {
 

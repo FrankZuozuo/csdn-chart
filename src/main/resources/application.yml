@@ -16,8 +16,10 @@ spring:
     core-pool-size: 10
     max-pool-size: 200
     queue-capacity: 10
+
 server:
   port: 9253
+
 
 csdn:
   csdn-url: https://wretchant.blog.csdn.net

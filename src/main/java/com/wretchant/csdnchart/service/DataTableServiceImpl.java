@@ -1,6 +1,5 @@
 package com.wretchant.csdnchart.service;
 
-import com.wretchant.csdnchart.annotation.InfoLog;
 import com.wretchant.csdnchart.core.Converter;
 import com.wretchant.csdnchart.entity.DataTable;
 import com.wretchant.csdnchart.entity.DataTableDto;
@@ -30,14 +29,12 @@ public class DataTableServiceImpl implements DataTableService {
     this.dataTableRepo = dataTableRepo;
   }
 
-  @InfoLog("爬取数据入库")
   @Override
   public DataTable create(DataTableDto dataTableDto) {
     Converter<DataTableDto, DataTable> converter = new DataTableDto2DataTableConverter();
     return dataTableRepo.saveAndFlush(converter.converter(dataTableDto));
   }
 
-  @InfoLog("查询所有的统计数据")
   @Override
   public List<DataTable> list() {
     return dataTableRepo.findAll();

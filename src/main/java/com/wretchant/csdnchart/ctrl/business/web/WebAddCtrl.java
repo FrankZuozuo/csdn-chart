@@ -1,4 +1,4 @@
-package com.wretchant.csdnchart.ctrl.business;
+package com.wretchant.csdnchart.ctrl.business.web;
 
 import com.wretchant.csdnchart.annotation.InfoLog;
 import com.wretchant.csdnchart.service.DataTableService;
@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @RequestMapping("/web/add")
 @Controller
-public class AddCtrl {
+public class WebAddCtrl {
 
   private final DataTableService dataTableService;
 
-  public AddCtrl(DataTableService dataTableService) {
+  public WebAddCtrl(DataTableService dataTableService) {
     this.dataTableService = dataTableService;
   }
 

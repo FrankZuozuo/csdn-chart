@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>数据</title>
+
+    <style>
+
+        body {
+            text-align: center;
+            width: 100%;
+        }
+
+        table {
+            padding-right: 20px;
+            width: 100%;
+            min-width: 700px;
+            text-align: center;
+            border-spacing: unset;
+        }
+
+        td {
+            border: none;
+        }
+
+        thead {
+            background: rgba(0, 57, 117, 0.9);
+            color: aliceblue;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        thead td {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        tbody {
+            background: rgba(3, 21, 46, 0.9);
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        tbody td {
+            color: azure;
+            padding: 3px;
+            border-bottom: blueviolet 1px solid;
+            border-right: blueviolet 1px solid;
+        }
+    </style>
+</head>
+<body>
+
+
+<table>
+
+    <thead>
+    <!--0,57,117-->
+    <!--3,21,46-->
+    <tr>
+        <td>时间</td>
+
+        <td>原创</td>
+        <td>粉丝</td>
+        <td>喜欢</td>
+        <td>评论</td>
+
+        <td>等级</td>
+        <td>访问</td>
+        <td>积分</td>
+        <td>排名</td>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="data:${list}">
+        <td th:text="${#temporals.format(data.gmtCreate,'yyyy-MM-dd HH:mm:ss')}">0</td>
+
+        <td><span th:text="${data.articleNumber}"></span><span th:text="${data.articleNumberAdd eq 0 ? '':'(+'+data.articleNumberAdd+')'}"></span></td>
+        <td><span th:text="${data.fans}"></span><span th:text="${data.fansAdd eq 0 ? '':'(+'+data.fansAdd+')'}"></span></td>
+        <td><span th:text="${data.likeNumber}"></span><span th:text="${data.likeNumberAdd eq 0 ? '':'(+'+data.likeNumberAdd+')'}"></span></td>
+        <td><span th:text="${data.commentNumber}"></span><span th:text="${data.commentNumberAdd eq 0 ? '':'(+'+data.commentNumberAdd+')'}"></span></td>
+
+        <td><span th:text="${data.level}"></span><span th:text="${data.levelAdd eq 0 ? '':'(+'+data.levelAdd+')'}"></span></td>
+        <td><span th:text="${data.visitNumber}"></span><span th:text="${data.visitNumberAdd eq 0 ? '':'(+'+data.visitNumberAdd+')'}"></span></td>
+        <td><span th:text="${data.integral}"></span><span th:text="${data.integralAdd eq 0 ? '':'(+'+data.integralAdd+')'}"></span></td>
+        <td><span th:text="${data.top}"></span><span th:text="${data.topAdd eq 0 ? '':'(+'+data.topAdd+')'}"></span></td>
+
+
+    </tr>
+    </tbody>
+
+</table>
+
+</body>
+</html>
