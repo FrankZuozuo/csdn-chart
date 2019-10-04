@@ -17,6 +17,22 @@
             option.textStyle = {
                 color: 'rgba(255, 255, 255, 0.3)'
             };
+
+            option.toolbox = {
+                show: true,
+                feature: {
+                    dataZoom: {
+                        yAxisIndex: 'none'
+                    },
+                    dataView: {readOnly: false},
+                    magicType: {type: ['line', 'bar']},
+                    restore: {},
+                    saveAsImage: {}
+                }
+            };
+            option.tooltip = {
+                trigger: 'axis'
+            };
             myChart.setOption(option);
         }
 
@@ -60,14 +76,6 @@
     <script>
         $.get(url('VISIT_NUMBER'), function (res) {
             option = {
-                toolbox: {
-                    feature: {
-                        saveAsImage: {}
-                    }
-                },
-                tooltip: {
-                    trigger: 'axis'
-                },
                 xAxis: {
                     type: 'category',
                     data: res.t.datetime
@@ -93,14 +101,6 @@
 
         $.get(url('INTEGRAL'), function (res) {
             option = {
-                toolbox: {
-                    feature: {
-                        saveAsImage: {}
-                    }
-                },
-                tooltip: {
-                    trigger: 'axis'
-                },
                 xAxis: {
                     type: 'category',
                     data: res.t.datetime
@@ -125,14 +125,6 @@
     <script>
         $.get(url('TOP'), function (res) {
             option = {
-                toolbox: {
-                    feature: {
-                        saveAsImage: {}
-                    }
-                },
-                tooltip: {
-                    trigger: 'axis'
-                },
                 xAxis: {
                     type: 'category',
                     data: res.t.datetime
@@ -157,14 +149,6 @@
     <script>
         $.get(url('LEVEL'), function (res) {
             option = {
-                toolbox: {
-                    feature: {
-                        saveAsImage: {}
-                    }
-                },
-                tooltip: {
-                    trigger: 'axis'
-                },
                 xAxis: {
                     type: 'category',
                     data: res.t.datetime
@@ -190,14 +174,6 @@
     <script>
         $.get(url('ARTICLE_NUMBER'), function (res) {
             option = {
-                toolbox: {
-                    feature: {
-                        saveAsImage: {}
-                    }
-                },
-                tooltip: {
-                    trigger: 'axis'
-                },
                 xAxis: {
                     type: 'category',
                     data: res.t.datetime
@@ -222,14 +198,6 @@
     <script>
         $.get(url('FANS'), function (res) {
             option = {
-                toolbox: {
-                    feature: {
-                        saveAsImage: {}
-                    }
-                },
-                tooltip: {
-                    trigger: 'axis'
-                },
                 xAxis: {
                     type: 'category',
                     data: res.t.datetime
@@ -255,14 +223,6 @@
     <script>
         $.get(url('LIKE_NUMBER'), function (res) {
             option = {
-                toolbox: {
-                    feature: {
-                        saveAsImage: {}
-                    }
-                },
-                tooltip: {
-                    trigger: 'axis'
-                },
                 xAxis: {
                     type: 'category',
                     data: res.t.datetime
@@ -287,14 +247,6 @@
     <script>
         $.get(url('COMMENT_NUMBER'), function (res) {
             option = {
-                toolbox: {
-                    feature: {
-                        saveAsImage: {}
-                    }
-                },
-                tooltip: {
-                    trigger: 'axis'
-                },
                 xAxis: {
                     type: 'category',
                     data: res.t.datetime

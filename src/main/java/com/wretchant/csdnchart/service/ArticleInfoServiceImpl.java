@@ -1,22 +1,14 @@
 package com.wretchant.csdnchart.service;
 
+import com.google.common.collect.Lists;
 import com.wretchant.csdnchart.entity.ArticleInfo;
+import com.wretchant.csdnchart.entity.ConduitEnum;
 import com.wretchant.csdnchart.repo.ArticleInfoRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
-/**
- * Dream what you want to dream; go where you want to go; be what you want to be; because you have
- * only one life and one chance to do all the things you want to do． - - Online zuozuo / Frank /
- * TANJIAN
- *
- * @author Created by 谭健 on 2019/10/1 星期二 21:01.
- * @link <a href="http://qm.qq.com/cgi-bin/qm/qr?k=FJVK7slBx7qC5tKm_KdFTbwWOFHq1ASt">Join me</a>
- * @link <a href="http://blog.csdn.net/qq_15071263">CSDN Home Page</a>
- *     <p>
- *     <p>© All Rights Reserved.
- */
 @Service
 public class ArticleInfoServiceImpl implements ArticleInfoService {
 
@@ -44,5 +36,30 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
       return articleInfoRepo.saveAndFlush(article);
     }
     return articleInfoRepo.saveAndFlush(articleInfo);
+  }
+
+  @Override
+  public List<ArticleInfo> list() {
+    return articleInfoRepo.findAll();
+  }
+
+  @Override
+  public long count() {
+    return articleInfoRepo.count();
+  }
+
+  @Override
+  public List<ArticleInfo> list(ConduitEnum conduit) {
+    int number = 10;
+    switch (conduit) {
+      case NEW_MOST:
+        return articleInfoRepo.listOrderByGmtCreateLimit(number);
+      case VISIT_MOST:
+        return articleInfoRepo.listOrderByReadNumberLimit(number);
+      case COMMENT_MOST:
+        return articleInfoRepo.listOrderByCommentNumberLimit(number);
+      default:
+    }
+    return Lists.newArrayList();
   }
 }

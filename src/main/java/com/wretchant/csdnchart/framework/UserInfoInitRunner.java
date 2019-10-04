@@ -11,17 +11,6 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-/**
- * Dream what you want to dream; go where you want to go; be what you want to be; because you have
- * only one life and one chance to do all the things you want to do． - - Online zuozuo / Frank /
- * TANJIAN
- *
- * @author Created by 谭健 on 2019/10/1 星期二 21:40.
- * @link <a href="http://qm.qq.com/cgi-bin/qm/qr?k=FJVK7slBx7qC5tKm_KdFTbwWOFHq1ASt">Join me</a>
- * @link <a href="http://blog.csdn.net/qq_15071263">CSDN Home Page</a>
- *     <p>
- *     <p>© All Rights Reserved.
- */
 @Component
 public class UserInfoInitRunner implements ApplicationRunner {
 
@@ -49,9 +38,9 @@ public class UserInfoInitRunner implements ApplicationRunner {
     String src = select.get(0).attr("src");
 
     // 因为这里抓的头像图片太小 - 只有三分之一大小，不好看，我们把它变成大的
-    String headImgUrl = src.replace("1_", "3_");
+    String headImgUrl = src.replace("3_", "1_");
 
-    create(nickname, motto, src);
+    create(nickname, motto, headImgUrl);
   }
 
   private void create(String nickname, String motto, String headImgUrl) {

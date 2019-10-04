@@ -1,21 +1,120 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
->
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/echarts/4.3.0-rc.2/echarts-en.common.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <title>首页</title>
 
 
+    <script>
+        function setChart(id, option) {
+            var myChart = echarts.init(document.getElementById(id));
+            option.backgroundColor = "#2c343c";
+            option.textStyle = {
+                color: 'rgba(255, 255, 255, 0.3)'
+            };
+
+            option.toolbox = {
+                show: true,
+                feature: {
+                    dataZoom: {
+                        yAxisIndex: 'none'
+                    },
+                    dataView: {readOnly: false},
+                    magicType: {type: ['line', 'bar']},
+                    restore: {},
+                    saveAsImage: {}
+                }
+            };
+            option.tooltip = {
+                trigger: 'axis'
+            };
+            myChart.setOption(option);
+        }
+
+        function url(position) {
+            return '/api/data/t/' + 30 + '?' + 'dataTableEnum=' + position;
+        }
+    </script>
+
     <style>
+
 
         .main {
             width: 60%;
             min-width: 900px;
             min-height: 1080px;
             background: beige;
+        }
+
+        .info-box {
+            height: 170px;
+            width: 100%;
+            background: aliceblue;
+        }
+
+        .grand-box {
+            padding: 30px;
+            width: 100%;
+            background: aliceblue;
+        }
+
+        .info-box img {
+            width: 160px;
+            height: 160px;
+
+        }
+
+        .head-img {
+
+            padding-left: 50px;
+            padding-top: 10px;
+        }
+
+        h1 {
+            margin-top: 10px;
+        }
+
+        h6 {
+            margin-top: 10px;
+        }
+
+        .table {
+            background: darkseagreen;
+            height: 380px;
+        }
+
+        .title {
+            padding-top: 15px;
+            font-size: 14px;
+            font-weight: 300;
+            color: blueviolet;
+            padding-bottom: 10px;
+        }
+
+        .all-table {
+            float: right;
+
+            padding-right: 20px;
+        }
+
+        .all-table input {
+            width: 50px;
+            border: none;
+            border-bottom: blueviolet 1px solid;
             text-align: center;
+            background: beige;
+        }
+
+        a {
+            font-size: 14px;
+            font-weight: 300;
+            cursor: pointer;
+            color: red;
         }
     </style>
 </head>
@@ -24,8 +123,142 @@
 
 <div class="main m-auto">
 
+    <!-- 个人信息 -->
+    <div class="info-box">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="http://b-ssl.duitang.com/uploads/item/201511/07/20151107201311_TYGkm.jpeg" alt="头像"
+                     class="head-img">
+            </div>
+            <div class="col-md-9">
+                <h1 th:text="${userInfo.nickname}">简简单单OnlineZuozuo</h1>
+                <h6 th:text="${userInfo.motto}">未闻万里蓬莱，而窥先圣遗智。故，以此生筑梦，奔而逐之；以泰山之伟，攀而登之；以静雅素心，处世为人。------zuozuo 著...</h6>
+
+                <h6 class="title"><a href="/web/article">查看全部的文章 - - ></a></h6>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="title">
+        具体的数据
+    </div>
+    <div class="grand-box">
+        <div class="row">
+            <div class="col-md-3" th:text="${'原创：'+last.articleNumber}">0</div>
+            <div class="col-md-3" th:text="${'粉丝：'+last.fans}">0</div>
+            <div class="col-md-3" th:text="${'喜欢：'+last.likeNumber}">0</div>
+            <div class="col-md-3" th:text="${'评论：'+last.commentNumber}">0</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3" th:text="${'等级：'+last.level}">0</div>
+            <div class="col-md-3" th:text="${'访问：'+last.visitNumber}">0</div>
+            <div class="col-md-3" th:text="${'积分：'+last.integral}">0</div>
+            <div class="col-md-3" th:text="${'排名：'+last.top}">0</div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12"
+                 th:text="${'原转比：'+last.articleNumber+'(原创) / ' + count+'(总文章数) = ' + #numbers.formatPercent(last.articleNumber / (count * 1.00) ,3,2) }">
+                0
+            </div>
+        </div>
+    </div>
+
+    <div class="title">
+        访问通道
+    </div>
+    <div class="grand-box">
+        <div class="row">
+            <div class="col-md-3"><a href="/web/conduit/VISIT_MOST">最高访问10篇 - - ></a></div>
+            <div class="col-md-3"><a href="/web/conduit/NEW_MOST">最新文章10篇 - - ></a></div>
+            <div class="col-md-3"><a href="/web/conduit/COMMENT_MOST">评论最多10篇 - - ></a></div>
+        </div>
+    </div>
+
+
+    <!-- 访问简报 -->
+    <div class="title">
+        访问增量简报
+
+        <div class="all-table">以<input id="chart-data-length" type="number" value="30"><a onclick="chart()">条数据长度查看全部报表
+            - - ></a></div>
+    </div>
+    <div class="table" id="visitNumber"></div>
+    <script>
+        $.get(url('VISIT_NUMBER'), function (res) {
+            option = {
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: res.t.datetime
+                },
+                yAxis: {
+                    min: res.t.min - 2,
+                    max: res.t.max + 2
+                },
+                series: [{
+                    data: res.t.data,
+                    type: 'line'
+                }]
+            };
+            setChart('visitNumber', option);
+        });
+    </script>
+
+    <!-- 访问简报 -->
+    <div class="title">
+        写作趋势
+    </div>
+    <div class="table" id="archival_storage"></div>
+    <script>
+        $.get(url('VISIT_NUMBER'), function (res) {
+            option = {
+                xAxis: {
+                    type: 'category',
+                    data: [[${dates}]]
+                },
+                yAxis: {
+                    min: [[${min}]] - 2,
+                    max: [[${max}]] + 2
+                },
+                series: [{
+                    data: [[${datas}]],
+                    type: 'line',
+                    markPoint: {
+                        data: [
+                            {type: 'max', name: '最大值'},
+                            {type: 'min', name: '最小值'}
+                        ]
+                    },
+                    markLine: {
+                        data: [
+                            {type: 'average', name: '平均值'}
+                        ]
+                    }
+                }]
+            };
+            setChart('archival_storage', option);
+        });
+    </script>
 
 </div>
+
+<script>
+    function chart() {
+
+        var choose = $("#chart-data-length");
+        window.location.href = "/web/chart/" + choose.val();
+
+    }
+</script>
 
 
 </body>

@@ -80,15 +80,23 @@
     <tr th:each="data:${list}">
         <td th:text="${#temporals.format(data.gmtCreate,'yyyy-MM-dd HH:mm:ss')}">0</td>
 
-        <td><span th:text="${data.articleNumber}"></span><span th:text="${data.articleNumberAdd eq 0 ? '':'(+'+data.articleNumberAdd+')'}"></span></td>
-        <td><span th:text="${data.fans}"></span><span th:text="${data.fansAdd eq 0 ? '':'(+'+data.fansAdd+')'}"></span></td>
-        <td><span th:text="${data.likeNumber}"></span><span th:text="${data.likeNumberAdd eq 0 ? '':'(+'+data.likeNumberAdd+')'}"></span></td>
-        <td><span th:text="${data.commentNumber}"></span><span th:text="${data.commentNumberAdd eq 0 ? '':'(+'+data.commentNumberAdd+')'}"></span></td>
+        <td><span th:text="${data.articleNumber}"></span><span
+                th:text="${data.articleNumberAdd eq 0 ? '':'(+'+data.articleNumberAdd+')'}"></span></td>
+        <td><span th:text="${data.fans}"></span><span th:text="${data.fansAdd eq 0 ? '':'(+'+data.fansAdd+')'}"></span>
+        </td>
+        <td><span th:text="${data.likeNumber}"></span><span
+                th:text="${data.likeNumberAdd eq 0 ? '':'(+'+data.likeNumberAdd+')'}"></span></td>
+        <td><span th:text="${data.commentNumber}"></span><span
+                th:text="${data.commentNumberAdd eq 0 ? '':'(+'+data.commentNumberAdd+')'}"></span></td>
 
-        <td><span th:text="${data.level}"></span><span th:text="${data.levelAdd eq 0 ? '':'(+'+data.levelAdd+')'}"></span></td>
-        <td><span th:text="${data.visitNumber}"></span><span th:text="${data.visitNumberAdd eq 0 ? '':'(+'+data.visitNumberAdd+')'}"></span></td>
-        <td><span th:text="${data.integral}"></span><span th:text="${data.integralAdd eq 0 ? '':'(+'+data.integralAdd+')'}"></span></td>
-        <td><span th:text="${data.top}"></span><span th:text="${data.topAdd eq 0 ? '':'(+'+data.topAdd+')'}"></span></td>
+        <td><span th:text="${data.level}"></span><span
+                th:text="${data.levelAdd eq 0 ? '':'(+'+data.levelAdd+')'}"></span></td>
+        <td><span th:text="${data.visitNumber}"></span><span
+                th:text="${data.visitNumberAdd eq 0 ? '':'(+'+data.visitNumberAdd+')'}"></span></td>
+        <td><span th:text="${data.integral}"></span><span
+                th:text="${data.integralAdd eq 0 ? '':'(+'+data.integralAdd+')'}"></span></td>
+        <td><span th:text="${data.top}"></span><span th:text="${data.topAdd eq 0 ? '':'(+'+data.topAdd+')'}"></span>
+        </td>
 
 
     </tr>
